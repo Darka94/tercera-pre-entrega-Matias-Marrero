@@ -1,0 +1,23 @@
+{% extends "appWeb/home.html" %}
+{% block video %}
+    
+{% endblock video %}
+{% block contenido %}
+  <h2>Buscar Productos</h2>
+  <form action="{% url 'producto_list' %}" method="GET">
+    <input type="text" name="q" placeholder="Buscar productos...">
+    <button type="submit">Buscar</button>
+  </form>
+
+  {% if productos %}
+    <ul>
+      {% for producto in productos %}
+        <li>
+          <a href="{% url 'detalle_producto' producto.pk %}">{{ producto.nombre }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No se encontraron productos.</p>
+  {% endif %}
+{% endblock contenido %}

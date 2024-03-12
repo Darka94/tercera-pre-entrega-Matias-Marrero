@@ -1,0 +1,67 @@
+{% extends "appWeb/home.html" %}
+{% block titulo %}
+    <h1>Productos</h1>
+{% endblock titulo %}
+
+{% block video %}
+    
+{% endblock video %}
+    
+{% block contenido %}
+{% load static %}
+
+<a href="{% url 'producto_form' %}">
+    <button type="button" class="btn btn-secondary btn-lg">Agregar Producto</button>
+</a>
+<a href="{% url 'producto_list' %}">
+    <button type="button" class="btn btn-secondary btn-lg">Buscar</button>
+</a>
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for producto in productos %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Producto imagen-->
+                    <img class="card-img-top" src="{{ producto.imagen_url }}" alt="..." />
+                    <!-- Producto detalle-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Producto nombre-->
+                            <h5 class="fw-bolder">{{ producto.nombre }}</h5>
+                            <form action="{% url 'producto_eliminar' producto.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-danger eliminar-producto">Eliminar</button>
+                            </form>
+                            <!-- Producto precio-->
+                            ${{ producto.precio }}
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        
+                        <div class="text-center"> <a href="{% url 'detalle_producto' producto.id %}" class="btn btn-outline-dark mt-auto">Ver Detalles</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var botonesEliminar = document.querySelectorAll('.eliminar-producto');
+    
+        botonesEliminar.forEach(function(boton) {
+            boton.addEventListener('click', function() {
+                if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+                    // Enviar la solicitud de eliminación solo si el usuario confirma
+                    boton.closest('form').submit();
+                }
+            });
+        });
+    });
+    </script>
+  
+{% endblock contenido %}

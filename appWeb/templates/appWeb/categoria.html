@@ -1,0 +1,25 @@
+{% extends "appWeb/home.html" %}
+{% block titulo %}
+    <h1>Productos</h1>
+{% endblock titulo %}
+
+{% block video %}
+    
+{% endblock video %}
+    
+{% block contenido %}
+
+<body>
+    <h1>Listado de Categorías</h1>
+    <a href="{% url 'categoria_form' %}">
+        <button type="button" class="btn btn-secondary btn-lg">Agregar Categoria</button>
+    </a>
+    <ul>
+        {% for categoria in categoria %}
+            <li>{{ categoria.nombre }}</li>
+        {% endfor %}
+    </ul>
+
+ 
+</body>
+{% endblock contenido %}

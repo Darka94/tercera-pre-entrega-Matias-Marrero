@@ -1,0 +1,27 @@
+{% extends "appWeb/home.html" %}
+{% block titulo %}
+    <h1>Productos</h1>
+{% endblock titulo %}
+
+{% block video %}
+    
+{% endblock video %}
+    
+{% block contenido %}
+
+<body>
+    <h1>Listado de clientes</h1>
+    <a href="{% url 'cliente_form' %}">
+        <button type="button" class="btn btn-secondary btn-lg">Agregar cliente</button>
+    </a>
+
+    <ul>
+     
+        {% for c in cliente %}
+            <li>{{ c.nombre }} : {{c.email}}</li>
+           
+
+        {% endfor %}
+    </ul>
+</body>
+{% endblock contenido %}

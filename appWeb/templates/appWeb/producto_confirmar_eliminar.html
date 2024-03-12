@@ -1,0 +1,12 @@
+{% extends "appWeb/home.html" %}
+{% block video %}
+    
+{% endblock video %}
+{% block contenido %}
+  <h2>¿Estás seguro de que quieres eliminar el producto "{{ producto.nombre }}"?</h2>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="{% url 'productos' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock contenido%}

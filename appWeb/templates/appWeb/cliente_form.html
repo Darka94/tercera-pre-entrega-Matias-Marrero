@@ -1,0 +1,59 @@
+{% extends "appWeb/home.html" %}
+{% block video %}
+    
+{% endblock video %}
+{% block contenido %}
+{% load static %}
+
+<h1 class="product-title uppercase--false">Agregar cliente</h1>
+
+<form method="post" enctype="multipart/form-data" action="{% url 'cliente_form' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Agregar cliente</button>
+    
+</form>
+<style>
+    /* Estilos para el formulario */
+    form {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    /* Estilos para los campos del formulario */
+    form input[type="text"],
+    form input[type="number"],
+    form input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Estilos para el botón */
+    form button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    /* Estilos para el botón cuando se pasa el mouse sobre él */
+    form button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+
+{% endblock contenido %}
